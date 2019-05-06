@@ -10,7 +10,7 @@ authToken = token (efterlad den tom, vis det fx er login)
 
 ![img](https://i.imgur.com/m2t3Nnl.png)
 ```
-fetch(url, {
+fetch("localhost:3000/fetch", {
             method: "POST",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({
