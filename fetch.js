@@ -2,10 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const allowMethods = require('allow-methods');
+const cors = require('cors');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
+app.options('*', cors());
 
 
 
@@ -13,7 +16,7 @@ app.get('/', function(req, res) {
     res.sendFile('index.html', { root: '.' });
 });
 
-app.route('/fetch').all(allowMethods(['post', 'head']), 'Unsupported method').post('/fetch', function(req, res) {
+app.post('/fetch', function(req, res) {
     const url = req.body.url;
     const query = req.body.body;
     const authToken = req.body.authToken;
