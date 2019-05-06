@@ -1,0 +1,26 @@
+{
+  "name": "ezl1190.github.io",
+  "version": "1.0.0",
+  "description": "You can use the [editor on GitHub](https://github.com/EZL1190/EZL1190.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EZL1190/EZL1190.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EZL1190/EZL1190.github.io/issues"
+  },
+  "homepage": "https://github.com/EZL1190/EZL1190.github.io#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "es6-promise": "^4.2.6",
+    "express": "^4.16.4",
+    "isomorphic-fetch": "^2.2.1",
+    "node-fetch": "^2.5.0"
+  }
+}
