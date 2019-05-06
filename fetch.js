@@ -39,7 +39,21 @@ app.post('/fetch', function(req, res) {
         .then(tmp => res.send(tmp))
 })
 
-/*app.post('/fetch2', function(req, res) {
+app.post('/fetch2', function(req, res) {
+    const url = req.body.url;
+    const query = req.body.body;
+    const authToken = req.body.authToken;
+    console.log("URL: " + url + " Query: " + query + " AuthToken: " + authToken);
+    fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "authorization": authToken },
+            body: query,
+        })
+        .then(data => data.json())
+        .then(tmp => res.send(tmp))
+})
+
+/*app.post('/fetch3', function(req, res) {
     const url = "https://www.holdsport.dk/graphql";
     const query = { "query": "query{current_team{name}}" };
     const authToken = "830700:NiIMqLyOPfu44mhmbs-Eew:67719"
