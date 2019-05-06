@@ -7,38 +7,13 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.all('*', function(req, res, next) {
-    if (!req.get('Origin')) return next();
-
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'POST');
-    res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Custom-Header');
-
-    if ('OPTIONS' == req.method) return res.send(200);
-
-    next();
-});
-
-/*app.post('/post', function(req, res) {
-    const url = req.body.url;
-    const body = req.body.body;
-    console.log("URL: " + url + " Body: " + body);
-});*/
-
-/*fetch("https://www.holdsport.dk/graphql", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "authorization": "830700:NiIMqLyOPfu44mhmbs-Eew:67719" },
-        body: JSON.stringify({ "query": "query{current_team{name}}" }),
-    })
-    .then(data => data.json())
-    .then(tmp => console.log(tmp))*/
 
 
 app.get('/', function(req, res) {
     res.sendFile('index.html', { root: '.' });
 });
 
-app.post('/fetch', function(req, res) {
+app.route('/fetch').all(allowMethods(['post', 'head']), 'Unsupported method').post('/fetch', function(req, res) {
     const url = req.body.url;
     const query = req.body.body;
     const authToken = req.body.authToken;
