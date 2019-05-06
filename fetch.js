@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
+const allowMethods = require('allow-methods');
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,7 +26,7 @@ app.get('/', function(req, res) {
     res.sendFile('index.html', { root: '.' });
 });
 
-app.post('/fetch', function(req, res) {
+app.route('/fetch').all(allowMethods(['post'])).post(function(req, res) {
     const url = req.body.url;
     const query = req.body.body;
     const authToken = req.body.authToken;

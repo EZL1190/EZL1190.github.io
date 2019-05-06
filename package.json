@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/EZL1190/EZL1190.github.io#readme",
   "dependencies": {
+    "allow-methods": "^2.0.0",
     "body-parser": "^1.19.0",
     "es6-promise": "^4.2.6",
     "express": "^4.16.4",
