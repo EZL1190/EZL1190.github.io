@@ -7,6 +7,17 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.all('*', function(req, res, next) {
+    if (!req.get('Origin')) return next();
+
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET,POST');
+    res.set('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type');
+
+    if ('OPTIONS' == req.method) return res.send(200);
+
+    next();
+});
 
 /*app.post('/post', function(req, res) {
     const url = req.body.url;
@@ -27,7 +38,7 @@ app.get('/', function(req, res) {
     res.sendFile('index.html', { root: '.' });
 });
 
-app.route('/fetch').all('*').post(function(req, res) {
+app.post('/fetch', function(req, res) {
     const url = req.body.url;
     const query = req.body.body;
     const authToken = req.body.authToken;
