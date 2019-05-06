@@ -29,11 +29,11 @@ app.post('/fetch', function(req, res) {
     const url = req.body.url;
     const query = req.body.body;
     const authToken = req.body.authToken;
-    //console.log("URL: " + url + " Query: " + query + " AuthToken: " + authToken);
+    console.log("URL: " + url + " Query: " + query + " AuthToken: " + authToken);
     fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json", "authorization": authToken },
-            body: query,
+            body: JSON.stringify(query),
         })
         .then(data => data.json())
         .then(tmp => res.send(tmp))
