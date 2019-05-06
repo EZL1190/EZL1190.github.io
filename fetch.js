@@ -26,7 +26,7 @@ app.get('/', function(req, res) {
     res.sendFile('index.html', { root: '.' });
 });
 
-app.route('/fetch').all(allowMethods(['post'])).post(function(req, res) {
+app.route('/fetch').all(allowMethods(['get', 'head', 'post'], 'Unsupported method')).post(function(req, res) {
     const url = req.body.url;
     const query = req.body.body;
     const authToken = req.body.authToken;
